@@ -1,12 +1,13 @@
 <template>
   <nav class="navigation">
-    <div class="navigation-logo pl-5">
+
+    <div class="navigation-logo">
       <router-link
         exact
         active-class="activeC"
         to="/"
         class="navigation-link-list-item">
-        <h3 class="text-white" href="">Event Hab</h3>
+        <h3>Event Hab</h3>
       </router-link>
     </div>
 
@@ -69,17 +70,28 @@
 
   .navigation {
     width: 100%;
+    padding-left: calc(5%);
     height: 6vh;
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: black;
 
     &-logo {
       justify-content: flex-start;
       align-items: center;
       width: 20%;
+
+      h3 {
+        color: black;
+        font-weight: 900;
+        display: flex;
+        align-items: center;
+        padding-left: 40px;
+        margin: 0px;
+      }
+
     }
 
     &-link {
