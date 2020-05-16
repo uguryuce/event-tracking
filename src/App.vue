@@ -36,6 +36,10 @@
 
 <style>
 
+  body {
+    font-family: 'Montserrat', sans-serif;
+  }
+
   .fade-enter {
       opacity: 0;
   }

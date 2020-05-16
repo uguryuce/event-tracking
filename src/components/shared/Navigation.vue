@@ -7,7 +7,7 @@
         active-class="activeC"
         to="/"
         class="navigation-link-list-item">
-        <h3>Event Hab</h3>
+        <h3>Eventhab</h3>
       </router-link>
     </div>
 
@@ -20,7 +20,7 @@
         to="/event-list"
         tag="li"
         class="navigation-link-list-item">
-        <a href="">Event List</a>
+        <a href="">Etkinlik Listesi</a>
       </router-link>
 
         <router-link
@@ -65,13 +65,16 @@
   .activeC {
     a {
       color: white;
+      background-color: #64be79;
+      border-radius: 4px;
+      padding: 14px 7px;
     }
   }
 
   .navigation {
     width: 100%;
     padding-left: calc(5%);
-    height: 6vh;
+    height: 10vh;
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
@@ -84,8 +87,10 @@
       width: 20%;
 
       h3 {
-        color: black;
+        color: #333333;
         font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 1px;
         display: flex;
         align-items: center;
         padding-left: 40px;
@@ -112,7 +117,7 @@
           justify-content: center;
           text-decoration: none;
           list-style: none;
-          width: 12.5%;
+          width: 15%;
           align-items: center;
         }
       }

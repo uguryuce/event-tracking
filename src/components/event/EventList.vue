@@ -9,31 +9,51 @@
 
 
 
+    <div class="event-list-definition">
+      <h3>Aradığınız etkinlikler</h3>
+      <p>Bu sayfada <span>oluşturulan</span> ve <span>güncel</span> etkinlikler görüntülenmektedir.</p>
+    </div>
+
+
+
     <div class="event-list-item" v-for="event in getEvents" v-if="getEvents.length > 0">
 
-      <div class="event-list-item-fix event-list-item-id">
-        <h3 class="event-list-item-id-label"></h3>
-        {{event.key}}
+      <div class="event-list-item-content">
+
+
+        <div class="event-list-item-content-fix event-list-item-content-id">
+          <h3 class="event-list-item-content-id-label"></h3>
+          {{event.key}}
+        </div>
+
+        <div class="event-list-item-content-fix event-list-item-content-title" :class="titleClass(event.title)">
+          <h3 class="event-list-item-content-title-label"></h3>
+          {{event.title}}
+        </div>
+
+        <div class="event-list-item-content-fix event-list-item-content-subject">
+          <h3 class="event-list-item-content-subject-label"></h3>
+          {{event.subject}}
+        </div>
+
+        <div class="event-list-item-content-fix event-list-item-content-description">
+          <h3 class="event-list-item-content-description-label"></h3>
+          {{event.description}}
+        </div>
+
+        <div class="event-list-item-content-fix event-list-item-content-number">
+          <h3 class="event-list-item-content-number-label"></h3>
+          {{event.participantNumber}}
+        </div>
+
+
       </div>
 
-      <div class="event-list-item-fix event-list-item-title" :class="titleClass(event.title)">
-        <h3 class="event-list-item-title-label"></h3>
-        {{event.title}}
-      </div>
 
-      <div class="event-list-item-fix event-list-item-subject">
-        <h3 class="event-list-item-subject-label"></h3>
-        {{event.subject}}
-      </div>
 
-      <div class="event-list-item-fix event-list-item-description">
-        <h3 class="event-list-item-description-label"></h3>
-        {{event.description}}
-      </div>
 
-      <div class="event-list-item-fix event-list-item-number">
-        <h3 class="event-list-item-number-label"></h3>
-        {{event.participantNumber}}
+      <div class="event-list-item-img">
+        <h3>{{event.title}}</h3>
       </div>
 
     </div>
@@ -94,6 +114,7 @@
 
 <style lang="scss">
 
+
   $margin-l : 40px;
   $padding-l : 40px;
 
@@ -106,6 +127,7 @@
   }
 
   .event-list {
+    width: 100%;
     height: auto;
     padding-bottom: 100px;
     display: flex;
@@ -115,38 +137,72 @@
     justify-content: center;
 
     &-item {
-      display: flex;
-      width: 90%;
-      border-radius: 8px;
-      height: auto;
-      background-color: #f4f7fa;
       margin-top: 10px;
-      margin-bottom: 10px;
+      margin-bottom: 30px;
+      display: flex;
+      width: 85%;
+      border-radius: 8px;
+      background-color: #f4f7fa;
       flex-wrap: wrap;
-      padding-top: 20px;
       padding-bottom: 20px;
+      padding-top: 20px;
+      padding-right: 20px;
 
-      &-fix {
-        padding-left: $padding-l;
+      &-content {
+        width: 75%;
+        height: 150px;
         display: flex;
-        width: 100%;
+        flex-wrap: wrap;
+        align-items: center;
+
+        &-fix {
+          padding-left: $padding-l;
+          display: flex;
+          width: 100%;
+        }
+
+        &-id {
+          display: none;
+        }
+
+        &-title {
+          font-size: 18px;
+          font-weight: 700;
+          color: #1b1e21;
+          padding-bottom: 5px;
+        }
+
+        &-subject {
+          font-weight: 300;
+
+        }
       }
 
-      &-id {
-        display: none;
+
+
+      &-img {
+        width: 25%;
+
+        height: 150px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(90deg, rgba(155,80,235,1) 0%, rgba(119,109,235,1) 51%, rgba(93,131,235,1) 100%);
+        border-radius: 8px;
+        color: white;
+
+
+        h3 {
+          align-items: center;
+          font-weight: 700;
+          font-size: 20px;
+          letter-spacing: 1px;
+          color: #deeded;
+        }
       }
 
-      &-title {
-        font-size: 18px;
-        font-weight: 700;
-        color: #1b1e21;
-        padding-bottom: 5px;
-      }
 
-      &-subject {
-        font-weight: 300;
-
-      }
     }
 
 
@@ -176,6 +232,40 @@
           display: none;
           padding-bottom: 10px;
           border-bottom: 2px solid black;
+        }
+      }
+    }
+
+
+
+    &-definition {
+      width: 85%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-top: 30px;
+      justify-content: flex-start;
+      height: auto;
+      flex-wrap: wrap;
+      padding-bottom: 30px;
+      border-bottom: 1px solid #a5a9b240;
+      margin-bottom: 30px;
+
+      h3 {
+        width: 100%;
+        font-size: 12px;
+        text-transform:uppercase;
+        color: #a5a9b2;
+      }
+
+      p {
+        width: 100%;
+        margin: 0px;
+        font-size: 22px;
+        font-weight: 200;
+
+        span {
+          color: #a5a9b2;
         }
       }
     }
