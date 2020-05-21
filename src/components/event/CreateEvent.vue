@@ -187,7 +187,7 @@
     &-title {
       display: flex;
       width: 100%;
-      height: 45vh;
+      height: 40vh;
       background-color: transparent;
       justify-content: center;
       background-image: url("/src/assets/img/bac3.jpeg");

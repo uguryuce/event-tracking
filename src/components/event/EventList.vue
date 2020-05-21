@@ -244,14 +244,14 @@
     &-title {
       display: flex;
       width: 100%;
-      height: 45vh;
+      height: 40vh;
       background-color: transparent;
       justify-content: center;
-      background-image:linear-gradient(to left top, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)),
-                        url("/src/assets/img/bac1.jpeg");
+      background-image:linear-gradient(to left top, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.1)),
+                        url("/src/assets/img/bac11.jpeg");
       background-size: cover;
       background-repeat: no-repeat;
-      background-position: 50% 60%;
+      background-position: 50% 67%;
       align-items: center;
       margin-bottom: 20px;
 
