@@ -1,6 +1,6 @@
 <template>
   <div class="footer">
-    <p> Create Event : {{getEventTable.create}} || Score : {{getEventTable.score}}</p>
+    <p>{{getEventTable.create}} etkinlik</p>
   </div>
 </template>
 
@@ -17,20 +17,17 @@
 <style lang="scss">
 
   .footer {
-    position: absolute;
-    top: 6vh;
-    left: 0;
-    padding-left: 5%;
-    width: 100%;
-    height: 4vh;
-    background-color: rgba(0,0,0,0.8);
-    color: gray;
-    display: flex;
-    align-items: center;
+    display: inline-block;
 
     p {
-      margin: 0px;
+      display: inline-block;
+      transition: all .4s;
+      color: #a6a9b1;
 
+
+      &:hover {
+        color: #64be79;
+      }
     }
   }
 

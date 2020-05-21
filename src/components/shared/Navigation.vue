@@ -68,6 +68,7 @@
       background-color: #64be79;
       border-radius: 4px;
       padding: 14px 7px;
+      text-decoration: none!important;
     }
   }
 
@@ -113,12 +114,17 @@
         width: auto;
         align-items: center;
 
+
         &-item {
           justify-content: center;
           text-decoration: none;
           list-style: none;
           width: 15%;
           align-items: center;
+
+          a {
+            text-decoration: none;
+          }
         }
       }
     }

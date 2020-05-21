@@ -11,7 +11,7 @@
 
     <div class="event-list-definition">
       <h3>Aradığınız etkinlikler</h3>
-      <p>Bu sayfada <span>oluşturulan</span> ve <span>güncel</span> etkinlikler görüntülenmektedir.</p>
+      <p>Bu sayfada, oluşturulan <span><app-footer></app-footer></span> görüntülenmektedir.</p>
     </div>
 
 
@@ -42,9 +42,10 @@
         </div>
 
         <div class="event-list-item-content-fix event-list-item-content-number">
-          <h3 class="event-list-item-content-number-label"></h3>
-          {{event.participantNumber}}
+          <h3 class="event-list-item-content-number-label">Katılımcı Sayısı : &nbsp;</h3>
+          <span>{{event.participantNumber}}</span>
         </div>
+
 
 
       </div>
@@ -82,8 +83,13 @@
 <script>
 
   import  { mapGetters } from "vuex";
+  import Footer from "../shared/Footer";
 
   export default {
+
+    components : {
+      appFooter : Footer
+    },
 
     computed : {
       ...mapGetters(["getEvents"])
@@ -176,6 +182,34 @@
           font-weight: 300;
 
         }
+
+        &-number {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+
+          &-label {
+            width: auto;
+            font-size: 13.5px;
+            margin: 0px;
+            padding: 0px;
+            text-transform: uppercase;
+            color: #a6a9b1;
+          }
+
+          span {
+
+            width: auto;
+            font-size: 13.5px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            margin: 0px;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: #7abb7f;
+          }
+        }
       }
 
 
@@ -213,10 +247,11 @@
       height: 45vh;
       background-color: transparent;
       justify-content: center;
-      background-image: url("/src/assets/img/bac11.jpeg");
+      background-image:linear-gradient(to left top, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)),
+                        url("/src/assets/img/bac1.jpeg");
       background-size: cover;
       background-repeat: no-repeat;
-      background-position: 50% 50%;
+      background-position: 50% 60%;
       align-items: center;
       margin-bottom: 20px;
 
@@ -226,12 +261,17 @@
         text-transform: capitalize;
         font-weight: 900;
         letter-spacing: 1px;
-        color: #cdcdcd;
+        color: #ffffff;
 
         span {
           display: none;
           padding-bottom: 10px;
           border-bottom: 2px solid black;
+          transition: all .4s;
+
+          &:hover {
+            color: #64be79;
+          }
         }
       }
     }
