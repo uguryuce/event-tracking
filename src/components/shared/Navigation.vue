@@ -73,8 +73,10 @@
   }
 
   .navigation {
+
+    margin: auto;
     width: 100%;
-    padding-left: calc(5%);
+    padding-left: calc(6%);
     height: 10vh;
     display: flex;
     flex-wrap: nowrap;

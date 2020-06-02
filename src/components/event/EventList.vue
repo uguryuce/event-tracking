@@ -147,6 +147,7 @@
       margin-bottom: 30px;
       display: flex;
       width: 85%;
+      max-width: 1350px;
       border-radius: 8px;
       background-color: #f4f7fa;
       flex-wrap: wrap;
@@ -280,6 +281,7 @@
 
     &-definition {
       width: 85%;
+      max-width: 1350px;
       display: flex;
       flex-direction: row;
       align-items: center;

@@ -67,10 +67,10 @@ const actions = {
         let eventTable = {
           create : event.length,
           score : event.length
-        }
+        };
 
-        dispatch("setEventTable", event)
-        router.replace("/event-list")
+        dispatch("setEventTable", event);
+        router.replace("/event-list");
       })
   },
 
