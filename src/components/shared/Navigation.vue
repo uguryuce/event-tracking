@@ -76,13 +76,16 @@
 
     margin: auto;
     width: 100%;
-    padding-left: calc(6%);
+    padding-left: calc(5%);
     height: 10vh;
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
     background-color: white;
     color: black;
+    -webkit-box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.15);
+    -moz-box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.15);
+    box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.15);
 
     &-logo {
       justify-content: flex-start;

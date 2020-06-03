@@ -1,38 +1,68 @@
 <template>
-    <div style="position: relative;">
-        <h4>Event Details</h4>
+    <div class="event-details">
 
-        <!-- <div class="list-group">
-          <select class="mt-3 container" v-model="selectedEvent" @change="eventSelected">
 
-            <option selected disabled> Lütfen bir etkinlik seçin</option>
+        <div class="event-details-list">
 
-            <option
-              :disabled="event.participantNumber == 0"
-              :value="event.key"
-              v-for="event in getEvents">{{event.title}}</option>
-          </select>
-        </div>
 
-        <h1 v-if="event !== null">{{event.subject}}</h1>
+            <div class="event-details-list-title">
+                <h1>Etkinliklere Gözat</h1>
+            </div>
 
-        -->
-        <!-- <p>{{getEvents[1].subject}}</p> -->
-        <div class="list-group" v-for="(event,index) in getEvents" v-if="getEvents.length > 0">
-            <div class="mt-3 container">
-                {{event.title}}
+
+            <div class="event-details-list-group" v-for="(event,index) in getEvents" v-if="getEvents.length > 0">
+                <h3>{{event.title}}</h3>
 
                 <button
                         @click="eventSelected(index)"
-                        v-if="event">{{event.title}}
+                        v-if="event">Detay
                 </button>
             </div>
 
+
         </div>
-        <div v-if="selectedEvent.status === true" style="width: 50%; height: 90vh;margin-top: 10vh; background-color: red; position: fixed; bottom: 0; right: 0;">
-          <h1 v-if="selectedEvent.status"> {{getEvents[indis].subject}} </h1>
-          <h1 v-if="selectedEvent.status"> {{getEvents[indis].description}} </h1>
-          <button @click="selectedEvent.status = false" class="btn btn-primary">Kapat</button>
+
+
+        <div class="event-details-item" v-if="selectedEvent.status === true">
+
+            <div class="event-details-list-title" style="border-bottom: none;margin-bottom: -2px">
+
+            </div>
+
+            <div class="event-details-item-title">
+
+
+                <div class="event-details-item-title-date">
+                    <p class="event-details-item-title-date-day">27</p>
+                    <p class="event-details-item-title-date-month">May</p>
+                </div>
+
+
+                <div class="event-details-item-title-text">
+                    <h1 v-if="selectedEvent.status"> {{getEvents[indis].title}} </h1>
+                    <p class="event-details-item-title-text-date"></p>
+                    <p  class="event-details-item-title-text-user"></p>
+                </div>
+
+
+                <div class="event-details-item-title-button">
+                    <button style="display: none" class="btn btn-warning">Kapat</button>
+                </div>
+
+
+            </div>
+
+
+            <div class="event-details-item-description">
+                <div class="event-details-item-description-label">
+                    <p>Konu</p>
+                </div>
+                <div class="event-details-item-description-title">
+                    <h1 v-if="selectedEvent.status"> {{getEvents[indis].description}} </h1>
+                </div>
+            </div>
+            <h1 v-if="selectedEvent.status"> {{getEvents[indis].participantNumber}} </h1>
+            <button @click="selectedEvent.status = false" class="btn btn-primary">Kapat</button>
         </div>
 
 
@@ -47,7 +77,7 @@
         data() {
             return {
                 selectedEvent: {
-                    status: false,
+                    status: true,
                     index: NaN
                 },
                 event: null,
@@ -74,6 +104,194 @@
 
 </script>
 
-<style>
+<style lang="scss">
+
+    .event-details {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: start;
+        justify-content: flex-start;
+        margin-top: 2.5vh;
+
+        &-list {
+            width: 40%;
+            height: auto;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding-left: calc(5% + 40px);
+
+            &-title {
+                width: 100%;
+                display: flex;
+                height: 10vh;
+                align-items: center;
+                border-bottom: 2px solid #f6be41;
+
+                h1 {
+                    font-size: 18px;
+                }
+            }
+
+            &-group {
+                width: 100%;
+                display: flex;
+                height: 10vh;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: flex-start;
+                border-bottom: 2px solid #ecf0f4;
+
+                h3 {
+                    font-size: 16px;
+                    width: calc(100% - 90px);
+                }
+
+                button {
+                    background-color: #64be79;
+                    border: none;
+                    border-radius: 4px;
+                    padding-top: 4px;
+                    padding-bottom: 4px;
+                    color: white;
+                    width: 70px;
+                    margin-right: 20px;
+                    font-size: 14px;
+
+                }
+
+            }
+        }
+
+        &-item {
+            width: calc(55% - 40px);
+            display: flex;
+            margin-left: 5%;
+            margin-right: 40px;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: flex-start;
+
+            &-title {
+                padding-left: 50px;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                width: 100%;
+                color: white;
+                background-color: #1b1e21;
+                height: 150px;
+
+                h1 {
+                    font-size: 32px;
+                    font-weight: 800;
+                    letter-spacing: 1px;
+                }
+
+                &-date {
+                    width: 80px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    height: 70px;
+                    justify-content: center;
+                    align-items: center;
+
+                    &-day {
+                        height: 50%;
+                        display: flex;
+                        width: 100%;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: #d56450;
+                        margin-bottom: 0;
+                        color: white;
+                        font-weight: 600;
+                        border-top-left-radius: 5px;
+                        border-top-right-radius: 5px;
+                    }
+
+                    &-month {
+                        height: 50%;
+                        display: flex;
+                        width: 100%;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: #ffffff;
+                        margin-bottom: 0;
+                        color: black;
+                        font-weight: 600;
+                        border-bottom-left-radius: 5px;
+                        border-bottom-right-radius: 5px;
+                    }
+                }
+
+                &-text {
+                    width: calc(100% - 180px);
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    justify-content: flex-start;
+                    padding-left: 40px;
+                }
+
+                &-button {
+                    width: 80px;
+                    display: flex;
+                    margin-right: 20px;
+
+                    button {
+                        color: black;
+                        font-weight: 300;
+                    }
+                }
+            }
+
+            &-description {
+                padding-left: 50px;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                width: 100%;
+                background-color: #f4f6f9;
+                color: black;
+                height: 100px;
+
+                &-label {
+                    width: 80px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    height: 70px;
+                    justify-content: center;
+                    align-items: center;
+
+                    p{
+                        font-weight: 600;
+                        margin-bottom: 0;
+                    }
+                }
+
+                &-title {
+                    width: calc(100% - 180px);
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    justify-content: flex-start;
+                    padding-left: 40px;
+
+                    h1 {
+                        font-size: 14px;
+                        margin-bottom: 0;
+                        font-weight: 300;
+                    }
+                }
+            }
+        }
+    }
 
 </style>
