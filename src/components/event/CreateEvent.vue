@@ -177,6 +177,7 @@
 
 <style lang="scss">
 
+
   .create-event {
     display: flex;
     flex-wrap: wrap;

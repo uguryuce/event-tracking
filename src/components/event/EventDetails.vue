@@ -10,13 +10,15 @@
             </div>
 
 
-            <div class="event-details-list-group" v-for="(event,index) in getEvents" v-if="getEvents.length > 0">
-                <h3>{{event.title}}</h3>
+            <div class="event-details-list-group">
+                <div class="event-details-list-group-item" v-for="(event,index) in getEvents" v-if="getEvents.length > 0">
+                    <h3>{{event.title}}</h3>
 
-                <button
-                        @click="eventSelected(index)"
-                        v-if="event">Detay
-                </button>
+                    <button
+                            @click="eventSelected(index)"
+                            v-if="event">Detay
+                    </button>
+                </div>
             </div>
 
 
@@ -25,9 +27,7 @@
 
         <div class="event-details-item" v-if="selectedEvent.status === true">
 
-            <div class="event-details-list-title" style="border-bottom: none;margin-bottom: -2px">
 
-            </div>
 
             <div class="event-details-item-title">
 
@@ -55,14 +55,39 @@
 
             <div class="event-details-item-description">
                 <div class="event-details-item-description-label">
-                    <p>Konu</p>
+                    <p>Açıklama</p>
                 </div>
                 <div class="event-details-item-description-title">
                     <h1 v-if="selectedEvent.status"> {{getEvents[indis].description}} </h1>
                 </div>
             </div>
-            <h1 v-if="selectedEvent.status"> {{getEvents[indis].participantNumber}} </h1>
-            <button @click="selectedEvent.status = false" class="btn btn-primary">Kapat</button>
+
+            <div class="event-details-item-subject">
+                <div class="event-details-item-subject-label">
+                    <p>Konu</p>
+                </div>
+                <div class="event-details-item-subject-title">
+                    <h1 v-if="selectedEvent.status"> {{getEvents[indis].subject}} </h1>
+                </div>
+            </div>
+
+
+            <div class="event-details-item-number">
+
+                <div class="event-details-item-number-participant">
+                    <label>Katılımcı Sayısı </label>
+                    <h1 v-if="selectedEvent.status"> {{getEvents[indis].participantNumber}} </h1>
+                </div>
+
+                <div class="event-details-item-number-btn">
+                    <button @click="selectedEvent.status = false" class="btn">Kapat</button>
+                </div>
+
+            </div>
+
+            <div class="event-details-item-footer">
+
+            </div>
         </div>
 
 
@@ -92,7 +117,7 @@
             eventSelected(index) {
                 this.indis = index;
                 if (this.selectedEvent.index === index && this.selectedEvent.status === true) {
-                    this.selectedEvent.status = false;
+                    this.selectedEvent.status = true; // false dönerse çift tıklamada kapanır
                 } else {
                     this.selectedEvent.status = true;
                 }
@@ -108,13 +133,14 @@
 
     .event-details {
         width: 100%;
-        height: auto;
+        height: 90vh;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         align-items: start;
         justify-content: flex-start;
-        margin-top: 2.5vh;
+        padding-top: 2.5vh;
+
 
         &-list {
             width: 40%;
@@ -125,6 +151,7 @@
             justify-content: flex-start;
             align-items: flex-start;
             padding-left: calc(5% + 40px);
+
 
             &-title {
                 width: 100%;
@@ -138,45 +165,61 @@
                 }
             }
 
+
             &-group {
+                max-height: 60vh;
+                overflow-y: scroll;
                 width: 100%;
-                display: flex;
-                height: 10vh;
-                flex-wrap: wrap;
-                align-items: center;
-                justify-content: flex-start;
-                border-bottom: 2px solid #ecf0f4;
+                scroll-snap-type: block;
 
-                h3 {
-                    font-size: 16px;
-                    width: calc(100% - 90px);
+                &-item {
+                    width: 100%;
+                    display: flex;
+                    height: 10vh;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    justify-content: flex-start;
+                    border-bottom: 2px solid #ecf0f4;
+
+
+                    h3 {
+                        font-size: 16px;
+                        width: calc(100% - 90px);
+                    }
+
+                    button {
+                        background-color: #64be79;
+                        border: none;
+                        border-radius: 4px;
+                        padding-top: 4px;
+                        padding-bottom: 4px;
+                        color: white;
+                        width: 70px;
+                        margin-right: 20px;
+                        font-size: 13px;
+                        font-weight: 600;
+
+                    }
+
                 }
-
-                button {
-                    background-color: #64be79;
-                    border: none;
-                    border-radius: 4px;
-                    padding-top: 4px;
-                    padding-bottom: 4px;
-                    color: white;
-                    width: 70px;
-                    margin-right: 20px;
-                    font-size: 14px;
-
-                }
-
             }
         }
 
         &-item {
-            width: calc(55% - 40px);
+            position: fixed;
+            right: 0;
+            width: calc(55% - 55px);
             display: flex;
             margin-left: 5%;
-            margin-right: 40px;
+            margin-right: 55px;
             flex-wrap: wrap;
             flex-direction: row;
             justify-content: flex-start;
+            height: 60vh;
             align-items: flex-start;
+            box-shadow: 0 0 20px rgba(0,0,0,0.10);
+            margin-top: calc(10vh - 2px);
+
 
             &-title {
                 padding-left: 50px;
@@ -267,7 +310,7 @@
                     display: flex;
                     flex-wrap: wrap;
                     height: 70px;
-                    justify-content: center;
+                    justify-content: flex-start;
                     align-items: center;
 
                     p{
@@ -277,7 +320,7 @@
                 }
 
                 &-title {
-                    width: calc(100% - 180px);
+                    width: calc(100% - 80px);
                     display: flex;
                     flex-wrap: wrap;
                     align-items: center;
@@ -290,6 +333,86 @@
                         font-weight: 300;
                     }
                 }
+            }
+
+            &-subject {
+                display: flex;
+                padding-left: 50px;
+                align-items: center;
+                height: 100px;
+
+                &-label {
+                    width: 80px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    height: 70px;
+                    justify-content: flex-start;
+                    align-items: center;
+
+                    p{
+                        font-weight: 600;
+                        margin-bottom: 0;
+                    }
+                }
+
+                &-title {
+                    width: calc(100% - 80px);
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    justify-content: flex-start;
+                    padding-left: 40px;
+
+                    h1 {
+                        width: 100%;
+                        font-size: 14px;
+                        margin-bottom: 0;
+                        font-weight: 300;
+                    }
+                }
+            }
+
+
+
+            &-number {
+                width: 100%;
+                height: calc(60vh - 360px);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding-left: 50px;
+                padding-right: 50px;
+                background-color: #fff;
+
+                &-participant {
+                    display: flex;
+                    align-items: center;
+
+                    label {
+                        font-size: 16px;
+                        font-weight: 600;
+                    }
+                    h1 {
+                        font-size: 16px;
+                        margin-left: 10px;
+                        color: #38c172;
+                        font-weight: 700;
+                    }
+                }
+
+                &-btn {
+                    button {
+                        background-color: #ffbc00;
+                        color: white;
+                        font-weight: 700;
+                    }
+                }
+            }
+
+            &-footer {
+                height: 10px;
+                width: 100%;
+                //background-color: #ecf0f4;
             }
         }
     }
