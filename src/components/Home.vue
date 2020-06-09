@@ -14,11 +14,12 @@
     </div>
 
 
-    <!-- <div class="event-details-list-group">
-      <div class="event-details-list-group-item" v-for="(event) in getEvents" v-if="getEvents.length > 0">
+    <div class="home-page-list-group">
+      <div class="home-page-list-group-item" v-for="event in getEvents.slice(0,4)" v-if="getEvents.length > 0">
         <h3>{{event.title}}</h3>
+        <p>{{event.subject}}</p>
       </div>
-    </div> -->
+    </div>
 
   </div>
 </template>
