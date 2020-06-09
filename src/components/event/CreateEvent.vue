@@ -1,84 +1,89 @@
 <template>
-  <div class="create-event">
+  <section>
+
+    <app-navigation></app-navigation>
+
+    <div class="create-event">
 
 
 
-    <div class="loading" :style="isLoading">
-      <div class="lds-ripple">
-        <div></div>
-        <div></div>
+      <div class="loading" :style="isLoading">
+        <div class="lds-ripple">
+          <div></div>
+          <div></div>
+        </div>
       </div>
-    </div>
 
 
 
-    <div class="create-event-title">
-      <h1>Etkinlik Oluştur</h1>
-    </div>
+      <div class="create-event-title">
+        <h1>Etkinlik Oluştur</h1>
+      </div>
 
 
 
-    <div class="create-event-description">
-      <div class="create-event-description-block">
+      <div class="create-event-description">
+        <div class="create-event-description-block">
 
-        <div class="create-event-description-block-item">
-          <i class="fa fa-twitter"></i>
-          <h3>Lorem ipsum dolor.</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.  ipsum omnis tempora?</p>
+          <div class="create-event-description-block-item">
+            <i class="fa fa-twitter"></i>
+            <h3>Lorem ipsum dolor.</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.  ipsum omnis tempora?</p>
+          </div>
+
+          <div class="create-event-description-block-item">
+            <i class="fa fa-twitter"></i>
+            <h3>Lorem ipsum dolor.</h3>
+            <p>Lorem ipsum dolor sit amet, adipisicing elit. Distinctio ipsum omnis tempora?</p>
+          </div>
+
+          <div class="create-event-description-block-item">
+            <i class="fa fa-twitter"></i>
+            <h3>Lorem ipsum dolor.</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur  elit. adipisicing elit Distinctio ipsum omnis tempora?</p>
+          </div>
+
+        </div>
+      </div>
+
+
+
+      <div class="create-event-form">
+
+        <div class="create-event-form-title">
+          <h1>Etkinlik Bilgileri</h1>
         </div>
 
-        <div class="create-event-description-block-item">
-          <i class="fa fa-twitter"></i>
-          <h3>Lorem ipsum dolor.</h3>
-          <p>Lorem ipsum dolor sit amet, adipisicing elit. Distinctio ipsum omnis tempora?</p>
+        <div class="create-event-form-item">
+          <label>Etkinlik Adı</label>
+          <input v-model="event.title" type="text" placeholder="Etkinlik adı girin">
         </div>
 
-        <div class="create-event-description-block-item">
-          <i class="fa fa-twitter"></i>
-          <h3>Lorem ipsum dolor.</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur  elit. adipisicing elit Distinctio ipsum omnis tempora?</p>
+        <div class="create-event-form-item">
+          <label>Etkinlik Konusu</label>
+          <input v-model="event.subject" type="text" placeholder="Etkinlik konusu girin">
+        </div>
+
+        <div class="create-event-form-item">
+          <label>Açıklama</label>
+          <input v-model="event.description" type="text" placeholder="Açıklama girin">
+        </div>
+
+        <div class="create-event-form-item">
+          <label>Katılımcı sayısı</label>
+          <input v-model="event.participantNumber" type="number" placeholder="Katılımcı sayısı girin">
+        </div>
+
+        <div class="create-event-form-item create-event-form-button">
+          <button class="" :disabled="createEnable" @click="createEvent">Kaydet</button>
         </div>
 
       </div>
-    </div>
 
 
-
-    <div class="create-event-form">
-
-      <div class="create-event-form-title">
-        <h1>Etkinlik Bilgileri</h1>
-      </div>
-
-      <div class="create-event-form-item">
-        <label>Etkinlik Adı</label>
-        <input v-model="event.title" type="text" placeholder="Etkinlik adı girin">
-      </div>
-
-      <div class="create-event-form-item">
-        <label>Etkinlik Konusu</label>
-        <input v-model="event.subject" type="text" placeholder="Etkinlik konusu girin">
-      </div>
-
-      <div class="create-event-form-item">
-        <label>Açıklama</label>
-        <input v-model="event.description" type="text" placeholder="Açıklama girin">
-      </div>
-
-      <div class="create-event-form-item">
-        <label>Katılımcı sayısı</label>
-        <input v-model="event.participantNumber" type="number" placeholder="Katılımcı sayısı girin">
-      </div>
-
-      <div class="create-event-form-item create-event-form-button">
-        <button class="" :disabled="createEnable" @click="createEvent">Kaydet</button>
-      </div>
 
     </div>
-
-
-
-  </div>
+  </section>
 </template>
 
 
@@ -92,7 +97,13 @@
 
 <script>
 
+  import Navigation from "../shared/Navigation";
+
   export default {
+
+    components : {
+      appNavigation : Navigation
+    },
 
     data () {
       return {

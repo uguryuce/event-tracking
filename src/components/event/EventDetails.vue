@@ -1,104 +1,115 @@
 <template>
-    <div class="event-details">
+
+    <section>
+        <app-navigation></app-navigation>
+        <div class="event-details">
 
 
-        <div class="event-details-list">
 
 
-            <div class="event-details-list-title">
-                <h1>Etkinliklere Gözat</h1>
+            <div class="event-details-list">
+
+
+                <div class="event-details-list-title">
+                    <h1>Etkinliklere Gözat</h1>
+                </div>
+
+
+                <div class="event-details-list-group">
+                    <div class="event-details-list-group-item" v-for="(event,index) in getEvents" v-if="getEvents.length > 0">
+                        <h3>{{event.title}}</h3>
+
+                        <button
+                                @click="eventSelected(index)"
+                                v-if="event">Detay
+                        </button>
+                    </div>
+                </div>
+
+
             </div>
 
 
-            <div class="event-details-list-group">
-                <div class="event-details-list-group-item" v-for="(event,index) in getEvents" v-if="getEvents.length > 0">
-                    <h3>{{event.title}}</h3>
+            <div class="event-details-item" v-if="selectedEvent.status === true">
 
-                    <button
-                            @click="eventSelected(index)"
-                            v-if="event">Detay
-                    </button>
+
+
+                <div class="event-details-item-title">
+
+
+                    <div class="event-details-item-title-date">
+                        <p class="event-details-item-title-date-day">27</p>
+                        <p class="event-details-item-title-date-month">May</p>
+                    </div>
+
+
+                    <div class="event-details-item-title-text">
+                        <h1 v-if="selectedEvent.status"> {{getEvents[indis].title}} </h1>
+                        <p class="event-details-item-title-text-date"></p>
+                        <p  class="event-details-item-title-text-user"></p>
+                    </div>
+
+
+                    <div class="event-details-item-title-button">
+                        <button style="display: none" class="btn btn-warning">Kapat</button>
+                    </div>
+
+
+                </div>
+
+
+                <div class="event-details-item-description">
+                    <div class="event-details-item-description-label">
+                        <p>Açıklama</p>
+                    </div>
+                    <div class="event-details-item-description-title">
+                        <h1 v-if="selectedEvent.status"> {{getEvents[indis].description}} </h1>
+                    </div>
+                </div>
+
+                <div class="event-details-item-subject">
+                    <div class="event-details-item-subject-label">
+                        <p>Konu</p>
+                    </div>
+                    <div class="event-details-item-subject-title">
+                        <h1 v-if="selectedEvent.status"> {{getEvents[indis].subject}} </h1>
+                    </div>
+                </div>
+
+
+                <div class="event-details-item-number">
+
+                    <div class="event-details-item-number-participant">
+                        <label>Katılımcı Sayısı </label>
+                        <h1 v-if="selectedEvent.status"> {{getEvents[indis].participantNumber}} </h1>
+                    </div>
+
+                    <div class="event-details-item-number-btn">
+                        <button @click="selectedEvent.status = false" class="btn">Kapat</button>
+                    </div>
+
+                </div>
+
+                <div class="event-details-item-footer">
+
                 </div>
             </div>
 
 
         </div>
-
-
-        <div class="event-details-item" v-if="selectedEvent.status === true">
-
-
-
-            <div class="event-details-item-title">
-
-
-                <div class="event-details-item-title-date">
-                    <p class="event-details-item-title-date-day">27</p>
-                    <p class="event-details-item-title-date-month">May</p>
-                </div>
-
-
-                <div class="event-details-item-title-text">
-                    <h1 v-if="selectedEvent.status"> {{getEvents[indis].title}} </h1>
-                    <p class="event-details-item-title-text-date"></p>
-                    <p  class="event-details-item-title-text-user"></p>
-                </div>
-
-
-                <div class="event-details-item-title-button">
-                    <button style="display: none" class="btn btn-warning">Kapat</button>
-                </div>
-
-
-            </div>
-
-
-            <div class="event-details-item-description">
-                <div class="event-details-item-description-label">
-                    <p>Açıklama</p>
-                </div>
-                <div class="event-details-item-description-title">
-                    <h1 v-if="selectedEvent.status"> {{getEvents[indis].description}} </h1>
-                </div>
-            </div>
-
-            <div class="event-details-item-subject">
-                <div class="event-details-item-subject-label">
-                    <p>Konu</p>
-                </div>
-                <div class="event-details-item-subject-title">
-                    <h1 v-if="selectedEvent.status"> {{getEvents[indis].subject}} </h1>
-                </div>
-            </div>
-
-
-            <div class="event-details-item-number">
-
-                <div class="event-details-item-number-participant">
-                    <label>Katılımcı Sayısı </label>
-                    <h1 v-if="selectedEvent.status"> {{getEvents[indis].participantNumber}} </h1>
-                </div>
-
-                <div class="event-details-item-number-btn">
-                    <button @click="selectedEvent.status = false" class="btn">Kapat</button>
-                </div>
-
-            </div>
-
-            <div class="event-details-item-footer">
-
-            </div>
-        </div>
-
-
-    </div>
+    </section>
 </template>
 
 <script>
 
     import {mapGetters} from "vuex";
+    import Navigation from "../shared/Navigation"
 
     export default {
+        components : {
+            appNavigation : Navigation
+        },
+
         data() {
             return {
                 selectedEvent: {

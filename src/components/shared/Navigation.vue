@@ -29,7 +29,7 @@
           to="/create-event"
           tag="li"
           class="navigation-link-list-item">
-          <a href="">Create Event</a>
+          <a href="">Etkinlik Oluştur</a>
         </router-link>
 
         <router-link
@@ -38,17 +38,17 @@
           to="/event-details"
           tag="li"
           class="navigation-link-list-item">
-          <a href="">Event View</a>
+          <a href="">Etkinlik Detay</a>
         </router-link>
 
-        <router-link
+        <!-- <router-link
           exact
           active-class="activeC"
           to="/profile"
           tag="li"
           class="navigation-link-list-item">
           <a href="">Profile</a>
-        </router-link>
+        </router-link> -->
 
       </ul>
     </div>
@@ -60,17 +60,9 @@
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
-  .activeC {
-    a {
-      color: white;
-      background-color: #64be79;
-      border-radius: 4px;
-      padding: 14px 7px;
-      text-decoration: none!important;
-    }
-  }
+
 
   .navigation {
 
@@ -129,9 +121,20 @@
 
           a {
             text-decoration: none;
+            color: #333333!important;
           }
         }
       }
+    }
+  }
+
+  .activeC {
+    a {
+      color: white!important;
+      background-color: #64be79;
+      border-radius: 4px;
+      padding: 14px 7px;
+      text-decoration: none!important;
     }
   }
 

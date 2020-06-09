@@ -1,73 +1,78 @@
 <template>
-  <div class="event-list">
+  <section>
+
+    <app-navigation></app-navigation>
+
+    <div class="event-list">
 
 
 
-    <div class="event-list-title">
-      <h1>Etkinliklere Gözat</h1>
-    </div>
+      <div class="event-list-title">
+        <h1>Etkinliklere Gözat</h1>
+      </div>
 
 
 
-    <div class="event-list-definition">
-      <h3>Aradığınız etkinlikler</h3>
-      <p>Bu sayfada, oluşturulan <span><app-footer></app-footer></span> görüntülenmektedir.</p>
-    </div>
+      <div class="event-list-definition">
+        <h3>Aradığınız etkinlikler</h3>
+        <p>Bu sayfada, oluşturulan <span><app-footer></app-footer></span> görüntülenmektedir.</p>
+      </div>
 
 
 
-    <div class="event-list-item" v-for="event in getEvents" v-if="getEvents.length > 0">
+      <div class="event-list-item" v-for="event in getEvents" v-if="getEvents.length > 0">
 
-      <div class="event-list-item-content">
+        <div class="event-list-item-content">
 
 
-        <div class="event-list-item-content-fix event-list-item-content-id">
-          <h3 class="event-list-item-content-id-label"></h3>
-          {{event.key}}
+          <div class="event-list-item-content-fix event-list-item-content-id">
+            <h3 class="event-list-item-content-id-label"></h3>
+            {{event.key}}
+          </div>
+
+          <div class="event-list-item-content-fix event-list-item-content-title" :class="titleClass(event.title)">
+            <h3 class="event-list-item-content-title-label"></h3>
+            {{event.title}}
+          </div>
+
+          <div class="event-list-item-content-fix event-list-item-content-subject">
+            <h3 class="event-list-item-content-subject-label"></h3>
+            {{event.subject}}
+          </div>
+
+          <div class="event-list-item-content-fix event-list-item-content-description">
+            <h3 class="event-list-item-content-description-label"></h3>
+            {{event.description}}
+          </div>
+
+          <div class="event-list-item-content-fix event-list-item-content-number">
+            <h3 class="event-list-item-content-number-label">Katılımcı Sayısı : &nbsp;</h3>
+            <span>{{event.participantNumber}}</span>
+          </div>
+
+
+
         </div>
 
-        <div class="event-list-item-content-fix event-list-item-content-title" :class="titleClass(event.title)">
-          <h3 class="event-list-item-content-title-label"></h3>
-          {{event.title}}
+
+
+
+        <div class="event-list-item-img">
+          <h3>{{event.title}}</h3>
         </div>
-
-        <div class="event-list-item-content-fix event-list-item-content-subject">
-          <h3 class="event-list-item-content-subject-label"></h3>
-          {{event.subject}}
-        </div>
-
-        <div class="event-list-item-content-fix event-list-item-content-description">
-          <h3 class="event-list-item-content-description-label"></h3>
-          {{event.description}}
-        </div>
-
-        <div class="event-list-item-content-fix event-list-item-content-number">
-          <h3 class="event-list-item-content-number-label">Katılımcı Sayısı : &nbsp;</h3>
-          <span>{{event.participantNumber}}</span>
-        </div>
-
-
 
       </div>
 
 
 
-
-      <div class="event-list-item-img">
-        <h3>{{event.title}}</h3>
+      <div v-else>
+        <p>Kayıt yok</p>
       </div>
 
+
+
     </div>
-
-
-
-    <div v-else>
-      <p>Kayıt yok</p>
-    </div>
-
-
-
-  </div>
+  </section>
 </template>
 
 
@@ -84,11 +89,13 @@
 
   import  { mapGetters } from "vuex";
   import Footer from "../shared/Footer";
+  import Navigation from "../shared/Navigation";
 
   export default {
 
     components : {
-      appFooter : Footer
+      appFooter : Footer,
+      appNavigation : Navigation
     },
 
     computed : {
