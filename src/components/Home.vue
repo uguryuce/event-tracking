@@ -65,9 +65,10 @@
   .home-page {
     margin-top: -15vh;
     width: 100%;
-    height: 70vh;
+    height: 80vh;
     background-image:
-            linear-gradient(to left bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+            linear-gradient(rgba(0, 0, 0, .12), rgba(0, 0, 0, .12)),
+            linear-gradient(to right top, rgba(0, 0, 0, .12), rgba(0, 0, 0, .12)),
             url("/src/assets/img/bac1.jpeg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -76,7 +77,7 @@
     &-title {
       width: 100%;
       background-color: transparent;
-      height: 70vh;
+      height: 80vh;
       padding-top: 0vh;
       display: flex;
       flex-wrap: wrap;

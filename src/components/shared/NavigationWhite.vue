@@ -116,8 +116,9 @@
                 &-item {
                     justify-content: center;
                     text-decoration: none;
+                    display: flex;
                     list-style: none;
-                    width: 16%;
+                    width: 15%;
                     align-items: center;
 
                     a {
