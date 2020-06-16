@@ -1,18 +1,17 @@
 <template>
 
   <div>
-
-
-
     <transition name="fade" mode="out-in">
       <router-view></router-view>
+
+
     </transition>
-
     <!-- <app-footer></app-footer> -->
-
   </div>
 
 </template>
+
+
 
 <script>
 
@@ -34,6 +33,8 @@
 
 </script>
 
+
+
 <style>
 
   body {
@@ -54,7 +55,5 @@
     transition: opacity .4s ease-out;
     opacity: 0;
   }
-
-
 
 </style>

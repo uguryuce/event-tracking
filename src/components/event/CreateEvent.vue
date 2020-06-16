@@ -69,9 +69,17 @@
           <input v-model="event.description" type="text" placeholder="Açıklama girin">
         </div>
 
-        <div class="create-event-form-item">
-          <label>Katılımcı sayısı</label>
-          <input v-model="event.participantNumber" type="number" placeholder="Katılımcı sayısı girin">
+
+        <div class="create-event-form-item create-event-form-datepicker">
+          <div class="create-event-form-datepicker-item">
+            <label>Katılımcı sayısı</label>
+            <input v-model="event.participantNumber" type="number" placeholder="Katılımcı sayısı girin">
+          </div>
+
+          <div class="create-event-form-datepicker-item">
+            <label>Tarih</label>
+            <VueCtkDateTimePicker label="Gün ve saat seçimi yapın" v-model="event.date"></VueCtkDateTimePicker>
+          </div>
         </div>
 
         <div class="create-event-form-item create-event-form-button">
@@ -97,12 +105,19 @@
 
 <script>
 
+
   import Navigation from "../shared/Navigation";
+
+  import VueCtkDateTimePicker from 'vue-ctk-date-time-picker';
+  import 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css';
 
   export default {
 
+
+
     components : {
-      appNavigation : Navigation
+      appNavigation : Navigation,
+      VueCtkDateTimePicker
     },
 
     data () {
@@ -111,32 +126,42 @@
           title : "",
           subject : "",
           description : "",
-          participantNumber : null
+          participantNumber : null,
+
+          date : "",
+          dateDay : "",
+          dateTime: "",
         },
         createButtonClicked : false
       }
     },
 
 
-
     methods : {
       createEvent () {
         this.createButtonClicked = true;
-        this.$store.dispatch("createEvent", this.event)
-      }
+        this.$store.dispatch("createEvent", this.event);
+        this.event.dateDay = this.event.date.substr(0,10);
+        this.event.dateTime = this.event.date.substr(10,15);
+      },
     },
+
 
 
 
     computed : {
       createEnable() {
-        if(this.event.title.length > 0 && this.event.subject.length > 0 && this.event.description.length > 0 && this.event.participantNumber !== null){
+        if(this.event.title.length > 0 &&
+                this.event.subject.length > 0 &&
+                this.event.description.length > 0 &&
+                this.event.participantNumber !== null){
           return false;
         }
         else {
           return true;
         }
       },
+
 
 
 
@@ -157,7 +182,11 @@
 
 
     beforeRouteLeave(to, from, next){
-      if((this.event.title.length > 0 || this.event.subject.length > 0 || this.event.description.length > 0 || this.event.participantNumber !== null) && !this.createButtonClicked) {
+      if((this.event.title.length > 0 ||
+              this.event.subject.length > 0 ||
+              this.event.description.length > 0 ||
+              this.event.participantNumber !== null) &&
+              !this.createButtonClicked) {
 
         if (confirm("Kaydedilmemiş değişiklikler var. Yine de çıkmak istiyor musunuz?")) {
           next();
@@ -173,7 +202,10 @@
       }
 
     }
+
   }
+
+
 
 </script>
 
@@ -187,6 +219,12 @@
 
 
 <style lang="scss">
+
+  .datepicker {
+
+  }
+
+
 
 
   .create-event {
@@ -327,6 +365,7 @@
           background-color: #f4f6f9;
           border: 1px solid #dbe1e695;
           border-radius: 4px;
+          outline-color: #50a1f0;;
 
           &::placeholder {
             color: #9fa4af;
@@ -334,6 +373,45 @@
           }
         }
 
+
+      }
+
+      &-datepicker {
+        display: flex;
+        justify-content: space-between;
+
+        &-item {
+          width: 50%;
+
+          &:first-child {
+            padding-right: 10px;
+          }
+
+          &:last-child {
+            padding-left: 10px;
+          }
+
+          .date-time-picker {
+
+            .field {
+              input {
+                height: 46px;
+                border: 1px solid #dbe1e695;;
+                background-color: #f4f6f9;
+                border-radius: 4px;
+                padding: 10px 10px;
+
+                &::placeholder {
+                  color:  #9fa4af;
+                  font-weight: 300;
+                  font-size: 16px;
+                  font-family: 'Montserrat', sans-serif;
+                }
+              }
+
+            }
+          }
+        }
 
       }
 

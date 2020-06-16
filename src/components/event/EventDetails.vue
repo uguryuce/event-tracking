@@ -16,7 +16,9 @@
 
 
                 <div class="event-details-list-group">
-                    <div class="event-details-list-group-item" v-for="(event,index) in getEvents" v-if="getEvents.length > 0">
+                    <div class="event-details-list-group-item"
+                         v-for="(event,index) in getEvents"
+                         v-if="getEvents.length > 0">
                         <h3>{{event.title}}</h3>
 
                         <button
@@ -101,10 +103,8 @@
 </template>
 
 <script>
-
     import {mapGetters} from "vuex";
     import Navigation from "../shared/Navigation"
-
     export default {
         components : {
             appNavigation : Navigation

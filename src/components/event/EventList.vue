@@ -50,6 +50,14 @@
             <span>{{event.participantNumber}}</span>
           </div>
 
+          <div class="event-list-item-content-fix event-list-item-content-number">
+            <h3 class="event-list-item-content-number-label">Katılımcı Sayısı : &nbsp;</h3>
+            <span>{{event.date}}</span>
+            <span>{{event.dateDay}}</span>
+            <span>{{event.dateTime}}</span>
+
+          </div>
+
 
 
         </div>
@@ -110,7 +118,9 @@
           'event-title' : title.length > 5,
           'event-title2' : title.length < 5
         }
-      }
+      },
+
+
     }
   }
 

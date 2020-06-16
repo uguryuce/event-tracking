@@ -5,7 +5,7 @@
     <div class="home-page">
 
       <div class="home-page-title">
-        <h1>Gerçek dünya sizi çağırıyor</h1>
+        <h1>Etkinlik Takip Sistemi</h1>
         <p>İnsanlarla tanışmak, yeni bir şeyler denemek ve sevdiğiniz şeyi yapmak için bize katılın.</p>
         <router-link
                 exact
