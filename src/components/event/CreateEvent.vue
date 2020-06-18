@@ -82,6 +82,7 @@
           </div>
         </div>
 
+
         <div class="create-event-form-item create-event-form-button">
           <button class="" :disabled="createEnable" @click="createEvent">Kaydet</button>
         </div>
@@ -90,7 +91,26 @@
 
 
 
+
+
+
     </div>
+
+    <!-- <GmapMap
+            :center="{lat:38.9025, lng:33.9090}"
+            :zoom="5"
+            map-type-id="terrain"
+            style="width: 100%; height: 300px;"
+    >
+      <GmapMarker
+              :key="index"
+              v-for="(m, index) in markers"
+              :position="m.position"
+              :clickable="true"
+              :draggable="true"
+              @click="center=m.position"
+      />
+    </GmapMap> -->
   </section>
 </template>
 
@@ -111,14 +131,25 @@
   import VueCtkDateTimePicker from 'vue-ctk-date-time-picker';
   import 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css';
 
+  import VueGoogleMaps from 'vue2-google-maps'
+
+  import VDistpicker from 'v-distpicker'
+
+
   export default {
+
 
 
 
     components : {
       appNavigation : Navigation,
-      VueCtkDateTimePicker
+      VueCtkDateTimePicker,
+      VueGoogleMaps,
+      VDistpicker
     },
+
+
+
 
     data () {
       return {
@@ -132,9 +163,19 @@
           dateDay : "",
           dateTime: "",
         },
-        createButtonClicked : false
+        createButtonClicked : false,
+        center : { lat : 10.0, lng : 10.0},
+        markers : [
+          {
+            position : {lat : 10.0, lng : 10.0}
+          },
+          {
+            position : {lat : 11.0, lng : 11.0}
+          }
+        ]
       }
     },
+
 
 
     methods : {
@@ -145,6 +186,8 @@
         this.event.dateTime = this.event.date.substr(10,15);
       },
     },
+
+
 
 
 
@@ -165,6 +208,8 @@
 
 
 
+
+
       isLoading(){
         if(this.createButtonClicked){
           return {
@@ -178,6 +223,8 @@
         }
       }
     },
+
+
 
 
 
@@ -203,7 +250,10 @@
 
     }
 
+
   }
+
+
 
 
 
@@ -223,6 +273,7 @@
   .datepicker {
 
   }
+
 
 
 
@@ -278,10 +329,10 @@
       justify-content: flex-start;
       align-items: flex-end;
       padding-right: 20px;
-      height: 70vh;
+      height: 80vh;
       flex-wrap: wrap;
       background-color: #f4f6f9;
-      margin-bottom: 50px;
+      margin-bottom: 0;
       padding-top: 40px;
 
       &-block {
@@ -332,9 +383,10 @@
       flex-wrap: wrap;
       justify-content: center;
       width: 65%;
-      height: 70vh;
+      height: 80vh;
+      padding-bottom: 5vh;
       padding-top: 20px;
-      margin-bottom: 50px;
+      margin-bottom: 0px;
 
       &-title {
         display: flex;

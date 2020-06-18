@@ -12,6 +12,8 @@ import ProfileEdit from "./components/profile/ProfileEdit";
 
 Vue.use(VueRouter);
 
+
+
 const routes = [
 
   {path : "/", component : Home},
