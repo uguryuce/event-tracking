@@ -22,6 +22,7 @@
                         <h3>{{event.title}}</h3>
 
                         <button
+                                id="event-selected-button"
                                 @click="eventSelected(index)"
                                 v-if="event">Detay
                         </button>
@@ -40,20 +41,14 @@
 
 
                     <div class="event-details-item-title-date">
-                        <p class="event-details-item-title-date-day">27</p>
-                        <p class="event-details-item-title-date-month">May</p>
+                        <p class="event-details-item-title-date-day">{{getEvents[indis].date.substring(5,10)}}</p>
+                        <p class="event-details-item-title-date-month">{{getEvents[indis].date.substring(10,16)}}</p>
                     </div>
 
 
                     <div class="event-details-item-title-text">
                         <h1 v-if="selectedEvent.status"> {{getEvents[indis].title}} </h1>
-                        <p class="event-details-item-title-text-date"></p>
-                        <p  class="event-details-item-title-text-user"></p>
-                    </div>
-
-
-                    <div class="event-details-item-title-button">
-                        <button style="display: none" class="btn btn-warning">Kapat</button>
+                        <p class="event-details-item-title-text-date">{{getEvents[indis].selectedCity}} &nbsp;{{getEvents[indis].selectedDistrict}}</p>
                     </div>
 
 
@@ -79,11 +74,16 @@
                 </div>
 
 
-                <div class="event-details-item-number">
+                <div style="border-radius: 18px" class="event-details-item-number">
 
                     <div class="event-details-item-number-participant">
-                        <label>Katılımcı Sayısı </label>
-                        <h1 v-if="selectedEvent.status"> {{getEvents[indis].participantNumber}} </h1>
+                        <div class="event-details-item-number-participant-label">
+                            <label>Kapasite</label>
+                        </div>
+                        <div class="event-details-item-number-participant-h1">
+                            <i class="fa fa-user"></i>
+                            <h1 v-if="selectedEvent.status"> {{getEvents[indis].participantNumber}} </h1>
+                        </div>
                     </div>
 
                     <div class="event-details-item-number-btn">
@@ -92,22 +92,25 @@
 
                 </div>
 
-                <div class="event-details-item-footer">
 
-                </div>
             </div>
 
 
         </div>
+
+
+        <app-footer></app-footer>
     </section>
 </template>
 
 <script>
     import {mapGetters} from "vuex";
     import Navigation from "../shared/Navigation"
+    import Footer from "../shared/Footer"
     export default {
         components : {
-            appNavigation : Navigation
+            appNavigation : Navigation,
+            appFooter : Footer
         },
 
         data() {
@@ -141,6 +144,21 @@
 </script>
 
 <style lang="scss">
+
+    #event-selected-button {
+
+        &:focus {
+            background-color: lightgray;
+            outline: none;
+            color: black;
+        }
+
+        &:active{
+            background-color: lightgray;
+            outline: none;
+            color: black;
+        }
+    }
 
     .event-details {
         width: 100%;
@@ -178,7 +196,7 @@
 
 
             &-group {
-                max-height: 60vh;
+                max-height: 70vh;
                 overflow-y: scroll;
                 width: 100%;
                 scroll-snap-type: block;
@@ -217,7 +235,6 @@
         }
 
         &-item {
-            position: fixed;
             right: 0;
             width: calc(55% - 55px);
             display: flex;
@@ -226,13 +243,15 @@
             flex-wrap: wrap;
             flex-direction: row;
             justify-content: flex-start;
-            height: 60vh;
+            height: 70vh;
+            border-radius: 18px;
             align-items: flex-start;
             box-shadow: 0 0 20px rgba(0,0,0,0.10);
             margin-top: calc(10vh - 2px);
 
 
             &-title {
+                border-radius: 18px;
                 padding-left: 50px;
                 display: flex;
                 flex-wrap: wrap;
@@ -288,10 +307,33 @@
                 &-text {
                     width: calc(100% - 180px);
                     display: flex;
+                    flex-direction: row;
                     flex-wrap: wrap;
                     align-items: center;
                     justify-content: flex-start;
                     padding-left: 40px;
+                    height: 70px;
+
+
+                    h1 {
+                        font-size: 25px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        margin: 0;
+                        padding: 0;
+                        width: 100%;
+                    }
+
+                    p {
+                        width: 100%;
+                        font-size: 14px;
+                        display: flex;
+                        align-items: center;
+                        margin: 0;
+                        padding: 0;
+
+                    }
                 }
 
                 &-button {
@@ -310,11 +352,13 @@
                 padding-left: 50px;
                 display: flex;
                 flex-wrap: wrap;
-                align-items: center;
+                align-items: flex-start;
                 width: 100%;
+                padding-right: 10%;
                 background-color: #f4f6f9;
                 color: black;
-                height: 100px;
+                height: 200px;
+                padding-top: 25px;
 
                 &-label {
                     width: 80px;
@@ -322,7 +366,8 @@
                     flex-wrap: wrap;
                     height: 70px;
                     justify-content: flex-start;
-                    align-items: center;
+                    align-items: flex-start;
+
 
                     p{
                         font-weight: 600;
@@ -339,9 +384,11 @@
                     padding-left: 40px;
 
                     h1 {
-                        font-size: 14px;
+                        font-size: 16px;
+                        line-height: 1.8;
                         margin-bottom: 0;
-                        font-weight: 300;
+                        font-weight: 400;
+                        color: gray;
                     }
                 }
             }
@@ -376,9 +423,12 @@
 
                     h1 {
                         width: 100%;
-                        font-size: 14px;
+                        font-size: 16px;
                         margin-bottom: 0;
-                        font-weight: 300;
+                        font-weight: 500;
+                        //text-decoration: underline;
+                        letter-spacing: .3px;
+                        color: #333333;
                     }
                 }
             }
@@ -387,7 +437,7 @@
 
             &-number {
                 width: 100%;
-                height: calc(60vh - 360px);
+                height: calc(70vh - 450px);
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
@@ -399,15 +449,40 @@
                     display: flex;
                     align-items: center;
 
-                    label {
-                        font-size: 16px;
-                        font-weight: 600;
+                    &-label {
+                        width: 80px;
+                        display: flex;
+                        flex-wrap: wrap;
+                        height: 70px;
+                        justify-content: flex-start;
+                        align-items: center;
+
+                        label {
+                            font-weight: 600;
+                            margin-bottom: 0;
+                        }
                     }
-                    h1 {
-                        font-size: 16px;
-                        margin-left: 10px;
-                        color: #38c172;
-                        font-weight: 700;
+                    &-h1 {
+                        width: calc(100% - 80px);
+                        display: flex;
+                        flex-wrap: nowrap;
+                        align-items: center;
+                        justify-content: flex-start;
+                        padding-left: 40px;
+
+                        h1 {
+                            padding-left: 7px;
+                            width: 100%;
+                            font-size: 14px;
+                            margin-bottom: 0;
+                            font-weight: 600;
+                            letter-spacing: .3px;
+                            color: #333333;
+                        }
+
+                        i{
+                            color: #a6a9b1;
+                        }
                     }
                 }
 
@@ -420,12 +495,11 @@
                 }
             }
 
-            &-footer {
-                height: 10px;
-                width: 100%;
-                //background-color: #ecf0f4;
-            }
+
         }
+
+
     }
+
 
 </style>

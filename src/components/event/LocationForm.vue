@@ -1,26 +1,31 @@
 <template>
-    <div style="width: 50%; margin:auto; padding-top: 40vh">
-        <select class="form-control" v-model="selectedCity" >
+    <div class="location-form">
 
-            <option disabled selected>Seçiniz</option>
+        <div class="location-form-city">
+            <label>Lokasyon</label>
+            <select style="color: #9fa4af;" class="location-form-city-select" v-model="selectedCity" >
 
-            <option  v-for="iller in il">
-                {{iller.il}}
-            </option>
+                <option style="color: #9fa4af;" disabled selected>Seçiniz</option>
 
-        </select>
+                <option style="color: #9fa4af;"  v-for="iller in il">
+                    {{iller.il}}
+                </option>
 
-        <br>
+            </select>
+        </div>
 
-        <select required class="form-control" v-model="selectedDistrict" >
+        <div class="location-form-district">
+            <label>Lokasyon</label>
+            <select style="color: #9fa4af;" required class="location-form-district-select" v-model="selectedDistrict" >
 
-            <option disabled selected>Seçiniz</option>
+                <option style="color: #9fa4af;" disabled selected>Seçiniz</option>
 
-            <option v-for="ilceler in ilce" v-if="selectedCity === ilceler.il" >
-                {{ilceler.ilce}}
-            </option>
+                <option style="color: #9fa4af;" v-for="ilceler in ilce" v-if="selectedCity === ilceler.il" >
+                    {{ilceler.ilce}}
+                </option>
 
-        </select>
+            </select>
+        </div>
 
 
     </div>
@@ -6869,6 +6874,72 @@
 </script>
 
 
-<style>
+<style lang="scss">
+
+    .location-form {
+        width: calc(100%);
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+
+        &-city {
+            width: calc(50% - 10px);
+            display: flex;
+            flex-wrap: wrap;
+            height: auto;
+            margin-right: 10px;
+
+            select {
+                width: calc(100%);
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: center;
+                background-color: #f4f6f9;
+                border: 1px solid #dbe1e695;
+                border-radius: 4px;
+                outline-color: #50a1f0;
+                padding: 10px 10px;
+                height: 46px;
+            }
+
+            label {
+                display: flex;
+                width: 100%;
+                flex-wrap: wrap;
+            }
+
+        }
+
+        &-district {
+            width: calc(50% - 10px);
+            display: flex;
+            flex-wrap: wrap;
+            height: auto;
+            margin-left: 10px;
+
+            select {
+                width: calc(100%);
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: center;
+                background-color: #f4f6f9;
+                border: 1px solid #dbe1e695;
+                border-radius: 4px;
+                outline-color: #50a1f0;
+                padding: 10px 10px;
+                height: 46px;
+            }
+
+            label {
+                display: flex;
+                width: 100%;
+                flex-wrap: wrap;
+            }
+
+        }
+
+    }
 
 </style>

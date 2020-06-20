@@ -7,8 +7,7 @@ import EventList from "./components/event/EventList";
 import EventDetails from "./components/event/EventDetails";
 import CreateEvent from "./components/event/CreateEvent";
 
-import Profile from "./components/profile/Profile";
-import ProfileEdit from "./components/profile/ProfileEdit";
+import LocationForm from "./components/event/LocationForm";
 
 Vue.use(VueRouter);
 
@@ -22,8 +21,7 @@ const routes = [
   {path : "/create-event", component : CreateEvent},
   {path : "/event-details", component : EventDetails},
 
-  {path : "/profile", component : Profile},
-  {path : "/profile-edit", component : ProfileEdit},
+  {path : "/location-form", component : LocationForm},
 
   {path : "*", redirect : "/"}
 

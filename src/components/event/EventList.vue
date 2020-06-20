@@ -15,7 +15,7 @@
 
       <div class="event-list-definition">
         <h3>Aradığınız etkinlikler</h3>
-        <p>Bu sayfada, oluşturulan <span><app-footer></app-footer></span> görüntülenmektedir.</p>
+        <p>Bu sayfada, oluşturulan <span>{{getEvents.length}} etkinlik</span> görüntülenmektedir.</p>
       </div>
 
 
@@ -35,27 +35,20 @@
             {{event.title}}
           </div>
 
-          <div class="event-list-item-content-fix event-list-item-content-subject">
-            <h3 class="event-list-item-content-subject-label"></h3>
-            {{event.subject}}
-          </div>
-
-          <div class="event-list-item-content-fix event-list-item-content-description">
-            <h3 class="event-list-item-content-description-label"></h3>
-            {{event.description}}
-          </div>
-
           <div class="event-list-item-content-fix event-list-item-content-number">
-            <h3 class="event-list-item-content-number-label">Katılımcı Sayısı : &nbsp;</h3>
+            <h3 class="event-list-item-content-number-label">Kapasite</h3>
             <span>{{event.participantNumber}}</span>
+            <h3 class="event-list-item-content-number-label">Tarih  </h3>
+            <span>{{event.date.substr(0,10)}}</span>
+            <h3 class="event-list-item-content-number-label">Saat  </h3>
+            <span>{{event.date.substr(10,event.date.length)}}</span>
           </div>
 
-          <div class="event-list-item-content-fix event-list-item-content-number">
-            <h3 class="event-list-item-content-number-label">Katılımcı Sayısı : &nbsp;</h3>
-            <span>{{event.date}}</span>
-            <span>{{event.dateDay}}</span>
-            <span>{{event.dateTime}}</span>
 
+          <div class="event-list-item-content-fix event-list-item-content-number">
+            <h3 class="event-list-item-content-number-label">Lokasyon</h3>
+            <span style="color:#a6a9b1; font-size: 22px "><i class="fa fa-location-arrow"></i></span>
+            <span>{{event.selectedCity}}</span>
           </div>
 
 
@@ -80,6 +73,13 @@
 
 
     </div>
+
+    <app-footer></app-footer>
+
+
+
+
+
   </section>
 </template>
 
@@ -210,22 +210,30 @@
           &-label {
             width: auto;
             font-size: 13.5px;
-            margin: 0px;
-            padding: 0px;
-            text-transform: uppercase;
+            margin: 0;
+            padding: 0;
+            text-transform: capitalize;
             color: #a6a9b1;
           }
 
           span {
 
             width: auto;
+            padding-right: 20px;
             font-size: 13.5px;
-            padding: 5px 10px;
             border-radius: 4px;
-            margin: 0px;
-            font-weight: 800;
+            margin: 0;
+            font-weight: 500;
             text-transform: uppercase;
-            color: #7abb7f;
+            color: #333333;
+
+            &:last-child{
+              padding-right: 0;
+            }
+          }
+
+          h3 {
+            padding-right: 5px;
           }
         }
       }
@@ -249,8 +257,11 @@
           align-items: center;
           font-weight: 700;
           font-size: 20px;
+          line-height: 1.8;
+          justify-content: center;
+          text-align: center;
           letter-spacing: 1px;
-          color: #deeded;
+          color: #fff;
         }
       }
 
