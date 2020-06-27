@@ -8,7 +8,7 @@
 
     <div class="footer-text">
       <p>Toplam Oluşturulan Etkinlik Sayısı : <span>{{getEvents.length}}</span></p>
-      <p>Bu sayfada gösterilen etkinliklerin sayısı : <span>4</span></p>
+
     </div>
 
   </div>
